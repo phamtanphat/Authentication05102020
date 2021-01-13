@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:hint="Nhap tai khoan"
+        android:id="@+id/edittextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:inputType="textPassword"
+        android:layout_below="@id/edittextEmail"
+        android:hint="Nhap mat khau"
+        android:id="@+id/edittextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_below="@id/edittextPassword"
+        android:text="Dang ky"
+        android:id="@+id/buttonDangky"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_toRightOf="@id/buttonDangky"
+        android:layout_below="@id/edittextPassword"
+        android:text="Dang nhap"
+        android:id="@+id/buttonDangnhap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/buttonDangnhap"
+        android:layout_toRightOf="@id/buttonVerification"
+        android:text="Cập nhật mat khau"
+        android:id="@+id/button_updatepassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/buttonDangnhap"
+        android:text="Xac thuc email"
+        android:id="@+id/buttonVerification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/buttonVerification"
+        android:hint="Nhap tai khoan"
+        android:id="@+id/edittextPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/buttonVerification"
+        android:layout_below="@id/edittextPhone"
+        android:text="Xac thuc email"
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
