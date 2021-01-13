@@ -12,9 +12,15 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -118,6 +124,45 @@ public class MainActivity extends AppCompatActivity {
                         });
             }
         });
+        mBtnDangkyPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PhoneAuthOptions options =
+                        PhoneAuthOptions.newBuilder(mAuth)
+                                .setPhoneNumber("+84352408366")       // Phone number to verify
+                                .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                                .setActivity(MainActivity.this)                 // Activity (for callback binding)
+                                .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
+                                .build();
+                PhoneAuthProvider.verifyPhoneNumber(options);
+            }
+        });
 
     }
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+        @Override
+        public void onVerificationCompleted(PhoneAuthCredential credential) {
+            // This callback will be invoked in two situations:
+            // 1 - Instant verification. In some cases the phone number can be instantly
+            //     verified without needing to send or enter a verification code.
+            // 2 - Auto-retrieval. On some devices Google Play services can automatically
+            //     detect the incoming verification SMS and perform verification without
+            //     user action.
+            Log.d("BBB",credential.getSmsCode());
+
+        }
+
+        @Override
+        public void onVerificationFailed(FirebaseException e) {
+//            Log.d("BBB",e.getCause().getMessage());
+        }
+
+        @Override
+        public void onCodeSent(@NonNull String verificationId,
+                               @NonNull PhoneAuthProvider.ForceResendingToken token) {
+
+            Log.d("BBB",verificationId );
+        }
+    };
 }
