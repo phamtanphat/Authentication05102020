@@ -99,5 +99,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mBtnCapnhat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String newPassword = "123456789";
+
+                user.updatePassword(newPassword)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(MainActivity.this, "Cap nhat thanh cong", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(MainActivity.this, "Cap nhat that bai", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+            }
+        });
+
     }
 }
